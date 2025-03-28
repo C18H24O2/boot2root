@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="x-dns-prefetch-control" content="off">
+<script type="text/javascript" language="JavaScript">
+<!--
+if (self != top) { try { if (document.domain != top.document.domain) { throw "Clickjacking security violation! Please log out immediately!"; /* this code should never execute - exception should already have been thrown since it's a security violation in this case to even try to access top.document.domain (but it's left here just to be extra safe) */ } } catch (e) { self.location = "/webmail//src/signout.php"; top.location = "/webmail//src/signout.php" } }
+// -->
+</script>
+
+<title>SquirrelMail 1.4.22</title><script language="JavaScript" type="text/javascript">
+<!--
+var alreadyFocused = false;
+function checkForm() {
+
+    if (alreadyFocused) return;
+    var f = document.forms.length;
+    var i = 0;
+    var pos = -1;
+    while( pos == -1 && i < f ) {
+        var e = document.forms[i].elements.length;
+        var j = 0;
+        while( pos == -1 && j < e ) {
+            if ( document.forms[i].elements[j].type == 'text' ) {
+                pos = j;
+            }
+            j++;
+        }
+        i++;
+    }
+    if( pos >= 0 ) {
+        document.forms[i-1].elements[pos].focus();
+    }
+}
+// -->
+</script>
+
+<!--[if IE 6]>
+<style type="text/css">
+/* avoid stupid IE6 bug with frames and scrollbars */
+body {
+    width: expression(document.documentElement.clientWidth - 30);
+}
+</style>
+<![endif]-->
+
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000cc" vlink="#0000cc" alink="#0000cc" onload="checkForm();">
+
+<a name="pagetop"></a>
+<table bgcolor="#ffffff" border="0" width="100%" cellspacing="0" cellpadding="2">
+
+<tr bgcolor="#ababab">
+
+<td align="left">
+
+         Current Folder: <b>INBOX&nbsp;</b>
+      </td>
+<td align="right">
+<b>
+<a href="/webmail//src/signout.php" target="_top">Sign Out</a></b></td>
+   </tr>
+<tr bgcolor="#ffffff">
+
+<td align="left">
+
+<a href="/webmail//src/compose.php?mailbox=INBOX&amp;startMessage=1">Compose</a>&nbsp;&nbsp;
+<a href="/webmail//src/addressbook.php">Addresses</a>&nbsp;&nbsp;
+<a href="/webmail//src/folders.php">Folders</a>&nbsp;&nbsp;
+<a href="/webmail//src/options.php">Options</a>&nbsp;&nbsp;
+<a href="/webmail//src/search.php?mailbox=INBOX">Search</a>&nbsp;&nbsp;
+<a href="/webmail//src/help.php">Help</a>&nbsp;&nbsp;
+      </td>
+<td align="right">
+
+<a href="http://squirrelmail.org/" target="_blank">SquirrelMail</a></td>
+   </tr>
+</table><br>
+
+
+<form name="compose" action="compose.php" method="post" enctype="multipart/form-data">
+<input type="hidden" name="smtoken" value="yg9F9sWhgobr" />
+<input type="hidden" name="startMessage" value="1" />
+<input type="hidden" name="session" value="2" />
+<table align="center" cellspacing="0" border="0">
+   <tr>
+<td bgcolor="#ffffff" align="right" width="10%">
+To:</td>
+<td bgcolor="#ffffff" align="left" width="90%">
+<input type="text" name="send_to" value="" size="60"  onfocus="alreadyFocused=true;" /><br />
+      </td>
+   </tr>
+   <tr>
+<td bgcolor="#ffffff" align="right">
+Cc:</td>
+<td bgcolor="#ffffff" align="left">
+<input type="text" name="send_to_cc" value="" size="60"  onfocus="alreadyFocused=true;" /><br />
+      </td>
+   </tr>
+   <tr>
+<td bgcolor="#ffffff" align="right">
+Bcc:</td>
+<td bgcolor="#ffffff" align="left">
+<input type="text" name="send_to_bcc" value="" size="60"  onfocus="alreadyFocused=true;" /><br />
+      </td>
+   </tr>
+   <tr>
+<td bgcolor="#ffffff" align="right">
+Subject:</td>
+<td bgcolor="#ffffff" align="left">
+
+         <input type="text" name="subject" value="attach" size="60"  onfocus="alreadyFocused=true;" />      </td>
+   </tr>
+
+   <tr>
+      <td></td>
+      <td>
+          Priority<select name="mailprio">
+<option value="1">High</option>
+<option value="3" selected="selected">Normal</option>
+<option value="5">Low</option>
+</select>
+          Receipt: <input type="checkbox" name="request_mdn" value="1"id="request_mdn" />
+<label for="request_mdn">On Read</label><input type="checkbox" name="request_dr" value="1"id="request_dr" />
+<label for="request_dr">On Delivery</label>      </td>
+   </tr>
+   <tr>
+      <td></td>
+      <td>
+         <input type="submit" name="sigappend" value="Signature" />
+         <input type="submit" name="html_addr_search" value="Addresses" />
+         <input type="submit" name ="draft" value="Save Draft" />
+         <input type="submit" name="send" value="Send" />
+      </td>
+   </tr>
+
+   <tr>
+      <td bgcolor="#ffffff" colspan="2">
+         &nbsp;&nbsp;<textarea name="body" id="body" rows="20" cols="76" wrap="virtual" onfocus="alreadyFocused=true;">test</textarea><br />
+      </td>
+   </tr>
+   <tr>
+<td align="right" colspan="2">
+
+         <input type="submit" name="send" value="Send" />
+         &nbsp;&nbsp;&nbsp;&nbsp;<br /><br />
+      </td>
+   </tr>
+   <tr>
+      <td colspan="2">
+         <table width="100%" cellpadding="1" cellspacing="0" align="center" border="0" bgcolor="#ababab">
+            <tr>
+               <td>
+                 <table width="100%" cellpadding="3" cellspacing="0" align="center" border="0">
+                    <tr>
+<td align="right" valign="middle">
+Attach:</td>
+<td align="left" valign="middle">
+<input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+                          <input name="attachfile" size="48" type="file" />
+                          &nbsp;&nbsp;<input type="submit" name="attach" value="Add" />
+(max.&nbsp;2<small>&nbsp;M</small>)                       </td>
+                    </tr>
+<tr><td bgcolor="#dcdcdc" align="left" colspan="2">
+<table bgcolor="#dcdcdc" border="0"><tr><td><input type="checkbox" name="delete[]" value="0" />
+</td><td>
+smcnf-exp</td><td>-</td><td> application/octet-stream</td><td>(15<small>&nbsp;k</small>)</td></tr></table>
+</td></tr><tr><td colspan="2"><input type="submit" name="do_delete" value="Delete selected attachments" />
+</td></tr>                  </table>
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+<input type="hidden" name="username" value="laurie@borntosec.net" />
+<input type="hidden" name="smaction" />
+<input type="hidden" name="mailbox" value="INBOX" />
+<input type="hidden" name="composesession" value="2" />
+<input type="hidden" name="querystring" value="" />
+<input type="hidden" name="attachments" value="a:1:{i:0;O:7:&quot;Message&quot;:21:{s:13:&quot;rfc822_header&quot;;s:0:&quot;&quot;;s:19:&quot;reply_rfc822_header&quot;;s:0:&quot;&quot;;s:11:&quot;mime_header&quot;;O:13:&quot;MessageHeader&quot;:10:{s:5:&quot;type0&quot;;s:11:&quot;application&quot;;s:5:&quot;type1&quot;;s:12:&quot;octet-stream&quot;;s:10:&quot;parameters&quot;;a:1:{s:4:&quot;name&quot;;s:9:&quot;smcnf-exp&quot;;}s:2:&quot;id&quot;;i:0;s:11:&quot;description&quot;;s:0:&quot;&quot;;s:8:&quot;encoding&quot;;s:0:&quot;&quot;;s:4:&quot;size&quot;;i:0;s:3:&quot;md5&quot;;s:0:&quot;&quot;;s:11:&quot;disposition&quot;;O:11:&quot;Disposition&quot;:2:{s:4:&quot;name&quot;;s:10:&quot;attachment&quot;;s:10:&quot;properties&quot;;a:1:{s:8:&quot;filename&quot;;s:9:&quot;smcnf-exp&quot;;}}s:8:&quot;language&quot;;s:0:&quot;&quot;;}s:5:&quot;flags&quot;;s:0:&quot;&quot;;s:5:&quot;type0&quot;;s:0:&quot;&quot;;s:5:&quot;type1&quot;;s:0:&quot;&quot;;s:8:&quot;entities&quot;;a:0:{}s:9:&quot;entity_id&quot;;s:0:&quot;&quot;;s:10:&quot;parent_ent&quot;;N;s:6:&quot;entity&quot;;N;s:6:&quot;parent&quot;;s:0:&quot;&quot;;s:12:&quot;decoded_body&quot;;s:0:&quot;&quot;;s:7:&quot;is_seen&quot;;i:0;s:11:&quot;is_answered&quot;;i:0;s:10:&quot;is_deleted&quot;;i:0;s:10:&quot;is_flagged&quot;;i:0;s:10:&quot;is_mdnsent&quot;;i:0;s:9:&quot;body_part&quot;;s:0:&quot;&quot;;s:6:&quot;offset&quot;;i:0;s:6:&quot;length&quot;;i:0;s:14:&quot;att_local_name&quot;;s:32:&quot;Zvz9L34tZMXBzGjE99ivX9a5YDcLI04S&quot;;}}" />
+</form>
+</body></html>

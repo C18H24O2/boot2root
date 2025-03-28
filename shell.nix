@@ -9,6 +9,7 @@ pkgs.mkShell {
     feroxbuster
     wireshark
     nmap
+    ghidra-bin
     john
     qemu
     python312

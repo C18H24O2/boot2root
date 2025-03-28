@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="x-dns-prefetch-control" content="off">
+<script type="text/javascript" language="JavaScript">
+<!--
+if (self != top) { try { if (document.domain != top.document.domain) { throw "Clickjacking security violation! Please log out immediately!"; /* this code should never execute - exception should already have been thrown since it's a security violation in this case to even try to access top.document.domain (but it's left here just to be extra safe) */ } } catch (e) { self.location = "/webmail//src/signout.php"; top.location = "/webmail//src/signout.php" } }
+// -->
+</script>
+
+<title>SquirrelMail 1.4.22</title><script language="JavaScript" type="text/javascript">
+<!--
+function checkForm() {
+   var f = document.forms.length;
+   var i = 0;
+   var pos = -1;
+   while( pos == -1 && i < f ) {
+       var e = document.forms[i].elements.length;
+       var j = 0;
+       while( pos == -1 && j < e ) {
+           if ( document.forms[i].elements[j].type == 'text'            || document.forms[i].elements[j].type == 'password' ) {
+               pos = j;
+           }
+           j++;
+       }
+   i++;
+   }
+   if( pos >= 0 ) {
+       document.forms[i-1].elements[pos].focus();
+   }
+   
+}
+// -->
+</script>
+
+<!--[if IE 6]>
+<style type="text/css">
+/* avoid stupid IE6 bug with frames and scrollbars */
+body {
+    width: expression(document.documentElement.clientWidth - 30);
+}
+</style>
+<![endif]-->
+
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000cc" vlink="#0000cc" alink="#0000cc" onload="checkForm();">
+
+<a name="pagetop"></a>
+<table bgcolor="#ffffff" border="0" width="100%" cellspacing="0" cellpadding="2">
+
+<tr bgcolor="#ababab">
+
+<td align="left">
+
+&nbsp;      </td>
+<td align="right">
+<b>
+<a href="/webmail//src/signout.php" target="_top">Sign Out</a></b></td>
+   </tr>
+<tr bgcolor="#ffffff">
+
+<td align="left">
+
+<a href="/webmail//src/compose.php?mailbox=None&amp;startMessage=0">Compose</a>&nbsp;&nbsp;
+<a href="/webmail//src/addressbook.php">Addresses</a>&nbsp;&nbsp;
+<a href="/webmail//src/folders.php">Folders</a>&nbsp;&nbsp;
+<a href="/webmail//src/options.php">Options</a>&nbsp;&nbsp;
+<a href="/webmail//src/search.php?mailbox=None">Search</a>&nbsp;&nbsp;
+<a href="/webmail//src/help.php">Help</a>&nbsp;&nbsp;
+      </td>
+<td align="right">
+
+<a href="http://squirrelmail.org/" target="_blank">SquirrelMail</a></td>
+   </tr>
+</table><br>
+
+<table bgcolor="#dcdcdc" align="center" width="95%" cellpadding="1" cellspacing="0" border="0">
+
+<tr>
+
+<td align="center">
+<b>Options</b><br />
+<table width="100%" cellpadding="5" cellspacing="0" border="0">
+
+<tr>
+
+<td bgcolor="#ffffff" align="center">
+
+<b>Successfully Saved Options: Personal Information</b><br />
+<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="5" border="0">
+
+<tr>
+
+<td align="left" valign="top">
+<table bgcolor="#ffffff" width="100%" cellpadding="3" cellspacing="0" border="0">
+
+<tr>
+
+<td align="left">
+<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="5" border="0">
+<tr>
+<td align="left" valign="top">
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td bgcolor="#ababab" align="left" valign="top" width="49%"><a href="options.php?optpage=personal">Personal Information</a></td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#ababab" align="left" valign="top" width="49%"><a href="options.php?optpage=display">Display Preferences</a></td>
+</tr>
+
+<tr>
+<td bgcolor="#dcdcdc" align="left" valign="top" width="49%">This contains personal information about yourself such as your name, your email address, etc.</td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#dcdcdc" align="left" valign="top" width="49%">You can change the way that SquirrelMail looks and displays information to you, such as the colors, the language, and other settings.</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="5" border="0">
+<tr>
+<td align="left" valign="top">
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td bgcolor="#ababab" align="left" valign="top" width="49%"><a href="options_highlight.php">Message Highlighting</a></td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#ababab" align="left" valign="top" width="49%"><a href="options.php?optpage=folder">Folder Preferences</a></td>
+</tr>
+
+<tr>
+<td bgcolor="#dcdcdc" align="left" valign="top" width="49%">Based upon given criteria, incoming messages can have different background colors in the message list. This helps to easily distinguish who the messages are from, especially for mailing lists.</td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#dcdcdc" align="left" valign="top" width="49%">These settings change the way your folders are displayed and manipulated.</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="5" border="0">
+<tr>
+<td align="left" valign="top">
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td bgcolor="#ababab" align="left" valign="top" width="49%"><a href="options_order.php">Index Order</a></td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#ffffff" align="left" valign="top" width="49%">&nbsp;</td>
+</tr>
+
+<tr>
+<td bgcolor="#dcdcdc" align="left" valign="top" width="49%">The order of the message index can be rearranged and changed to contain the headers in any order you want.</td>
+<td bgcolor="#ffffff" align="left" valign="top" width="2%">&nbsp;</td>
+
+<td bgcolor="#ffffff" align="left" valign="top" width="49%">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td></tr></table></td></tr></table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body></html>
