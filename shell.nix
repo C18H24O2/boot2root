@@ -12,8 +12,10 @@ pkgs.mkShell {
     ghidra-bin
     john
     qemu
-    python312
-  ] ++ (with pkgs.python312Packages; [
+    python311
+  ] ++ (with pkgs.python311Packages; [
+      # tkinter
+      turtle
       paramiko
     ]);
 }

@@ -1,3 +1,4 @@
 SecLists/
+__pycache__/
 .direnv/
 *.pcap
