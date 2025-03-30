@@ -6,6 +6,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     net-snmp
     sshpass
+    nikto
     feroxbuster
     wireshark
     nmap
