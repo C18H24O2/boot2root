@@ -14,7 +14,7 @@ else
 fi
 mkdir -vp "$ISO_DIR"
 
-ISO="$ISO_DIR/rainfall.iso"
+ISO="$ISO_DIR/boot2root.iso"
 ISO_URL="https://cdn.intra.42.fr/isos/BornToSecHackMe-v1.1.iso"
 
 if [ ! -f "$ISO" ]; then
