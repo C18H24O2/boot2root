@@ -1,5 +1,9 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs ? import <nixpkgs> {
+    nixpkgs.config.permittedInsecurePackages = [
+      "python-2.7.18.8"
+    ];
+  },
 }:
 
 pkgs.mkShell {
@@ -14,6 +18,7 @@ pkgs.mkShell {
     john
     qemu
     python311
+    python2
   ] ++ (with pkgs.python311Packages; [
       # tkinter
       turtle
