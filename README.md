@@ -2,7 +2,10 @@
 
 ## Exploits
 
-- 
+- Regular Path (Bomb)
+- DirtyC0w
+- Apache 2.2.22 suEXEC
+- Regular Path w/ ret2libc
 
 ## License
 
