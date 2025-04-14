@@ -101,14 +101,35 @@ There's two HTTP services, one on port 80 and one on port 443, an FTP service on
 
 ## Exploration
 
-### FTP
+### FTP (first pass)
 
 The FTP service doesn't accept anonymous logins, so we'll need to come back to it later.
 
-### SSH
+### SSH (first pass)
 
 We can try to connect to the machine via SSH, but again, we don't know any credentials that might work, and bruteforcing would take too long (and is not what the subject wants us to do, sadge).
 
 ### HTTP
 
-Looking around the HTTP (port 80) service, we can see that it's running Apache 2.2.22
+Looking around the HTTP (port 80) service, we can see that it's running Apache 2.2.22, let's keep that in mind for later. The page and files don't seem to have anything interesting, so we'll move on to HTTPS.
+
+### HTTPS
+
+Another web service is running on port 443, and it's a different host than HTTP, so that's a good start.
+
+We'll start by scanning possible paths via an enumeration tool like [feroxbuster](https://github.com/epi052/feroxbuster):
+
+```bash
+[nix-shell:~/boot2root]$ feroxbuster <TODO>
+...
+```
+
+We can see that there are three directories:
+- `/webmail/`
+  - This is locked behind a login page, so we'll come back later
+- `/phpmyadmin/`
+  - This is a web interface for the MySQL database, still no credentials, but that's probably a gold mine
+- `/forum/`
+  - A publicly accessible forum :exclamation: Let's look into it.
+
+
