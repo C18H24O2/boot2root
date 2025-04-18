@@ -2,7 +2,7 @@
 
 > This writeup takes from [Writeup 1](../writeup1/README.md), step ?, having discovered `/webmail/` credentials.
 
-The SquirrelMail version is '1.4.22' and is vulnerable to a [Remote Code Execution vulnerability](https://www.exploit-db.com/exploits/41910).
+The webmail server is SquirrelMail, version 1.4.22; this version is known to be vulnerable to a [Remote Code Execution vulnerability](https://www.exploit-db.com/exploits/41910).
 
 This could've been a really nice entrypoint, skipping the SQL & php shenanigans, getting us a reverse shell with just a smol script.
 
