@@ -1,5 +1,7 @@
 # Writeup 2 - Unclean Bovine (DirtyCOW)
 
+> This writeup starts from [**Writeup 1**](../writeup1/README.md) once we get any shell capable of compiling some C code
+
 The iso for this project is quite old, its vulnerable to the Dirty COW exploit, a privilege escalation vulnerability that exploits a race condition on the copy-on-write mechanism of older kernels (<4.8.3)
 
 ## Preparation
@@ -27,4 +29,6 @@ dirty.c               100%[=========================>]   4.70K  --.-KB/s    in 0
 $> gcc -pthread dirty.c -o dirty -lcrypt
 ```
 
-w  can then run the executable and wait... And after some time, the user firefart is created and we can connect as it, obtaining a root shell - **Congrats us, ~~that was pure talent!!!!~~**
+*Note: we can't always use `wget` as depending on the network config the machine might not have an internet, if so, we can just paste from the host machine when we use ssh to connect to the machine
+
+we can then run the executable and wait... And after some time, the user firefart is created and we can connect as it, obtaining a root shell - **Congrats us, ~~that was pure talent!!!!~~**
