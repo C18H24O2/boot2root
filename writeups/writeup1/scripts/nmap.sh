@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-nmap $(ip a show vboxnet0 | grep inet | xargs echo | cut -d' ' -f2)
+INTERFACE=${INTERFACE:-virbr0}
+nmap $(ip a show $INTERFACE | grep inet | xargs echo | cut -d' ' -f2)

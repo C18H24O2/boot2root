@@ -1,4 +1,4 @@
-# Writeup 8 - fakeroot :trollface:
+# Writeup 8 - fakeroot
 
 > This writeup takes from [Writeup 1](../writeup1/README.md), step ?, having found ssh credentials credentials.
 
@@ -19,35 +19,3 @@ real shell where you can run commands such as 'whoami'.
 ```
 
 :trollface:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-646da671ca01bb5d84dbb5fb2238dc8e
