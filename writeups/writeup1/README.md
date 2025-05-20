@@ -318,3 +318,321 @@ void useless() {
 ```
 
 Writing [a script](./scripts/concat-fun.py) to concatenate the files and re-order them, we get the following:
+
+```bash
+[nix-shell:~/boot2root/writeups/writeup1/scripts]$ python3 concat-fun.py 
+Concatenation complete. Output saved to output.c
+
+[nix-shell:~/boot2root/writeups/writeup1/scripts]$ cat output.c
+MY PASSWORD IS: Iheartpwnage
+Now SHA-256 it and submit
+```
+Le SHA-256 de Iheartpwnage est : 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4
+
+## 3.2 – Laurie
+
+Once we retrieve the SHA-256 password (`330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4`), we can log in via SSH as the `laurie` user:
+
+```bash
+[nix-shell:~/boot2root]$ ssh laurie@192.168.56.117
+Password: 
+laurie@BornToSecHackMe:~$
+```
+
+### Binary Bomb
+
+After logging in, we quickly notice a  file in Laurie's home `bomb`. Running it produces the following warning:
+
+```bash
+$ ./bomb
+Welcome this is my little bomb !!!! You have 6 stages with
+only one life good luck !! Have a nice day!
+```
+
+This is a classic **binary bomb** challenge, often found in reverse engineering exercises. The binary contains several stages that must be defused one by one by providing the correct input. If the input is incorrect, the program “explodes” (usually by exiting or displaying a failure message).
+
+---
+
+Here the breakdown of the 6 stages:
+
+### 3.2.1 – Stage 1: A Simple Comparison
+
+By analyzing the binary with tools like `ghidra`, we can identify that the first function compares the input string to a hardcoded value. In the disassembled code, we see:
+
+```c
+void phase_1(char *str)
+
+{
+  int value;
+  
+  value = strings_not_equal(str,"Public speaking is very easy.");
+  if (value != 0) {
+    explode_bomb();
+  }
+  return;
+}
+```
+
+So, the expected input is: `Public speaking is very easy.`.
+
+```bash
+Public speaking is very easy.
+Phase 1 defused. How about the next one?
+```
+
+### 3.2.2 – Stage 2: A Simple Algorithm
+
+In the disassembled code, we see :
+```c
+void phase_2(char *numbers)
+
+{
+  int i;
+  int tab [7];
+  
+  read_six_numbers(numbers,tab + 1);
+  if (tab[1] != 1) {
+    explode_bomb();
+  }
+  i = 1;
+  do {
+    if (tab[i + 1] != (i + 1) * tab[i]) {
+      explode_bomb();
+    }
+    i = i + 1;
+  } while (i < 6);
+  return;
+}
+```
+Writing the algorithm back in [a script](./scripts/bomb-phase2.py) gives us the correct sequence :
+
+```bash
+1 2 6 24 120 720
+That's number 2.  Keep going!
+```
+
+### 3.2.3 – Stage 3: A Correct sequence
+
+In the disassembled code, we see :
+```c
+void phase_3(char *param_1)
+
+{
+  int n_scanned;
+  char character;
+  uint first_number;
+  char letter;
+  int second_number;
+  
+  n_scanned = sscanf(param_1,"%d %c %d",&first_number,&letter,&second_number);
+  if (n_scanned < 3) {
+    explode_bomb();
+  }
+  switch(first_number) {
+  case 0:
+    character = 'q';
+    if (second_number != 0x309) {
+      explode_bomb();
+    }
+    break;
+  case 1:
+    character = 'b';
+    if (second_number != 0xd6) {
+      explode_bomb();
+    }
+    break;
+  case 2:
+    character = 'b';
+    if (second_number != 0x2f3) {
+      explode_bomb();
+    }
+    break;
+  case 3:
+    character = 'k';
+    if (second_number != 0xfb) {
+      explode_bomb();
+    }
+    break;
+  case 4:
+    character = 'o';
+    if (second_number != 0xa0) {
+      explode_bomb();
+    }
+    break;
+  case 5:
+    character = 't';
+    if (second_number != 0x1ca) {
+      explode_bomb();
+    }
+    break;
+  case 6:
+    character = 'v';
+    if (second_number != 0x30c) {
+      explode_bomb();
+    }
+    break;
+  case 7:
+    character = 'b';
+    if (second_number != 0x20c) {
+      explode_bomb();
+    }
+    break;
+  default:
+    character = 'x';
+    explode_bomb();
+  }
+  if (character != letter) {
+    explode_bomb();
+  }
+  return;
+}
+```
+
+Multiple solutions are available, we need to read the hint file in the same directory as the bomb :
+
+TODO
+`1 b 214`
+
+### 3.2.4 – Stage 4: Fibonacci
+
+Here the code :
+```c
+void phase_4(char *param_1)
+
+{
+  int n_read;
+  int number;
+  
+  n_read = sscanf(param_1,"%d",&number);
+  if ((n_read != 1) || (number < 1)) {
+    explode_bomb();
+  }
+  n_read = fibonacci(number);
+  if (n_read != 0x37) {
+    explode_bomb();
+  }
+  return;
+}
+```
+```c
+int fibonacci(int number)
+
+{
+  int a;
+  int b;
+  
+  if (number < 2) {
+    b = 1;
+  }
+  else {
+    a = fibonacci(number + -1);
+    b = fibonacci(number + -2);
+    b = b + a;
+  }
+  return b;
+```
+We then need to find to find a positive solution of fibonacci(x) == 0x37 (55).
+
+The solution is `9`.
+
+### 3.2.4 – Stage 4: Cypher
+
+```c
+void phase_5(char *str)
+
+{
+  int len;
+  char key [6];
+  
+  len = string_length(str);
+  if (len != 6) {
+    explode_bomb();
+  }
+  len = 0;
+  do {
+    key[len] = (&array.123)[(char)(str[len] & 0xf)];
+    len = len + 1;
+  } while (len < 6);
+  len = strings_not_equal(key,"giants");
+  if (len != 0) {
+    explode_bomb();
+  }
+  return;
+}
+```
+
+This code takes our input, apply it on the index of a global variable, and check if we gets "giants"
+
+The global variable is :
+```isrveawhobpnutfg```
+
+Using [a script](./scripts/bomb-phase5.py), we can get the correct input : `opekmq`
+
+### 3.2.5 – Stage 5: Tab sorting
+
+```c
+void phase_6(char *str)
+
+{
+  int *piVar1;
+  int j;
+  int i;
+  undefined1 *global;
+  int *new_tab [6];
+  int int_tab [6];
+  int *ptr;
+  
+  global = node1;
+  read_six_numbers(str,int_tab);
+  i = 0;
+  do {
+    j = i;
+    if (5 < int_tab[i] - 1U) {
+      explode_bomb();
+    }
+    while (j = j + 1, j < 6) {
+      if (int_tab[i] == int_tab[j]) {
+        explode_bomb();
+      }
+    }
+    i = i + 1;
+  } while (i < 6);
+  i = 0;
+  do {
+    j = 1;
+    ptr = (int *)global;
+    if (1 < int_tab[i]) {
+      do {
+        ptr = (int *)ptr[2];
+        j = j + 1;
+      } while (j < int_tab[i]);
+    }
+    new_tab[i] = ptr;
+    i = i + 1;
+  } while (i < 6);
+  i = 1;
+  ptr = new_tab[0];
+  do {
+    piVar1 = new_tab[i];
+    ptr[2] = (int)piVar1;
+    i = i + 1;
+    ptr = piVar1;
+  } while (i < 6);
+  piVar1[2] = 0;
+  i = 0;
+  do {
+    if (*new_tab[0] < *(int *)new_tab[0][2]) {
+      explode_bomb();
+    }
+    new_tab[0] = (int *)new_tab[0][2];
+    i = i + 1;
+  } while (i < 5);
+  return;
+}
+```
+
+This code :
+- Takes 6 numbers as an argument
+- Explodes if any number is inferior to 1 or is a duplicate
+- Explodes if the sequence given does not follow 
+TODO !!!!!111
