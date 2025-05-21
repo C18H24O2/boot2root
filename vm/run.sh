@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eou pipefail
+
 . $(dirname $0)/common.sh
 
 echo "Running VM"
@@ -12,8 +14,6 @@ VBoxManage storageattach "$VM_NAME" --storagectl "IDE Controller" --port 0 --dev
 if [ $# -gt 0 ] && [ "x$1" = "x--internet" ]; then
 	:
 else
-	# VBoxManage modifyvm "$VM_NAME" --nic1 hostonly --hostonlyadapter1 vboxnet0 
-	# VBoxManage modifyvm "$VM_NAME" --nic1 hostonly --hostonlyadapter1 virbr0
-	:
+	VBoxManage modifyvm "$VM_NAME" --nic1 hostonly --hostonlyadapter1 vboxnet0 
 fi
 VBoxManage startvm "$VM_NAME"

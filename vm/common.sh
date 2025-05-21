@@ -21,8 +21,3 @@ if [ ! -f "$ISO" ]; then
 	echo "Downloading $ISO"
 	curl -L -o "$ISO" "$ISO_URL"
 fi
-
-echo "To get the machine's IP address, run one of the following:"
-echo " ip neigh show"
-echo " arp -a"
-echo "If those don't work, tough luck."
