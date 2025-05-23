@@ -657,3 +657,33 @@ Avance 50 spaces
 Avance 100 spaces
 Recule 200 spaces
 ```
+
+Interpreting the code using [a script](./scripts/tt.py), we get the word `slash`
+
+We need to use the `MD5` of the word `slash` and use it to connect as `zaz`
+
+The `MD5` is : `646da671ca01bb5d84dbb5fb2238dc8e`
+
+On the `zaz` session, we have a `exploit_me` binary, we are gonna... exploit it !!!!
+
+Here's the code :
+```c
+int main(int argc,char **argv)
+
+{
+  char str[140];
+  
+  if (1 < argc) {
+    strcpy(str,argv[1]);
+    puts(str);
+  }
+  return (argc < 2);
+}
+```
+
+We will put a shellcode inside of str, fill it of `A` till we overflow, and then override the `RET` instruction to `JMP` on our shellcode.
+```bash
+$id
+uid=0(root) gid=0(root)
+```
+We are `root` !!!
