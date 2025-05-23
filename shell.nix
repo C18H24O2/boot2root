@@ -18,7 +18,8 @@ pkgs.mkShell {
     john
     qemu
     python311
-    python2
+    p7zip
+    python2 # I cast 200 days build-time!!!!
   ] ++ (with pkgs.python311Packages; [
       # tkinter
       turtle

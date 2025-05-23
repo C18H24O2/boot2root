@@ -1,6 +1,6 @@
 # Writeup 8 - fakeroot
 
-> This writeup takes from [Writeup 1](../writeup1/README.md), step ?, having found ssh credentials credentials.
+> This writeup takes from [Writeup 1](../writeup1/README.md), having found ssh credentials.
 
 When having an SSH connection, you can run `fakeroot` to get a "root shell" as per the subject's standards:
 

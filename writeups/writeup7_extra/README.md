@@ -1,6 +1,6 @@
 # Writeup 7 - that could've been so fucking good
 
-> This writeup takes from [Writeup 1](../writeup1/README.md), step ?, having discovered `/webmail/` credentials.
+> This writeup takes from [Writeup 1](../writeup1/README.md), having discovered `/webmail/` credentials.
 
 The webmail server is SquirrelMail, version 1.4.22; this version is known to be vulnerable to a [Remote Code Execution vulnerability](https://www.exploit-db.com/exploits/41910).
 
