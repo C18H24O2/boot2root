@@ -54,7 +54,7 @@ We now get the IP address of the machine: `192.168.56.108`.
 Now that we have the IP address, we can do a deeper scan of the machine to find open ports and services.
 
 ```bash
-[nix-shell:~/boot2root]$ nmap -sV -sC -p- 192.168.56.108
+[nix-shell:~/boot2root/writeups/writeup1/]$ ./scripts/nmap-full.sh
 Starting Nmap 7.94 ( https://nmap.org ) at 2025-03-30 19:44 CEST
 Nmap scan report for 192.168.56.108
 Host is up (0.00055s latency).
@@ -383,28 +383,8 @@ Phase 1 defused. How about the next one?
 
 ### 3.2.2 – Stage 2: A Simple Algorithm
 
-In the disassembled code, we see :
-```c
-void phase_2(char *numbers)
+See [phase2.disass.c](./scripts/phase2.disass.c) for the disassembled code.
 
-{
-  int i;
-  int tab [7];
-  
-  read_six_numbers(numbers,tab + 1);
-  if (tab[1] != 1) {
-    explode_bomb();
-  }
-  i = 1;
-  do {
-    if (tab[i + 1] != (i + 1) * tab[i]) {
-      explode_bomb();
-    }
-    i = i + 1;
-  } while (i < 6);
-  return;
-}
-```
 Writing the algorithm back in [a script](./scripts/bomb-phase2.py) gives us the correct sequence :
 
 ```bash
@@ -414,80 +394,7 @@ That's number 2.  Keep going!
 
 ### 3.2.3 – Stage 3: A Correct sequence
 
-In the disassembled code, we see :
-```c
-void phase_3(char *param_1)
-
-{
-  int n_scanned;
-  char character;
-  uint first_number;
-  char letter;
-  int second_number;
-  
-  n_scanned = sscanf(param_1,"%d %c %d",&first_number,&letter,&second_number);
-  if (n_scanned < 3) {
-    explode_bomb();
-  }
-  switch(first_number) {
-  case 0:
-    character = 'q';
-    if (second_number != 0x309) {
-      explode_bomb();
-    }
-    break;
-  case 1:
-    character = 'b';
-    if (second_number != 0xd6) {
-      explode_bomb();
-    }
-    break;
-  case 2:
-    character = 'b';
-    if (second_number != 0x2f3) {
-      explode_bomb();
-    }
-    break;
-  case 3:
-    character = 'k';
-    if (second_number != 0xfb) {
-      explode_bomb();
-    }
-    break;
-  case 4:
-    character = 'o';
-    if (second_number != 0xa0) {
-      explode_bomb();
-    }
-    break;
-  case 5:
-    character = 't';
-    if (second_number != 0x1ca) {
-      explode_bomb();
-    }
-    break;
-  case 6:
-    character = 'v';
-    if (second_number != 0x30c) {
-      explode_bomb();
-    }
-    break;
-  case 7:
-    character = 'b';
-    if (second_number != 0x20c) {
-      explode_bomb();
-    }
-    break;
-  default:
-    character = 'x';
-    explode_bomb();
-  }
-  if (character != letter) {
-    explode_bomb();
-  }
-  return;
-}
-```
+See [phase3.disass.c](./scripts/phase3.disass.c) for the disassembled code.
 
 Multiple solutions are available, we need to read the hint file in the same directory as the bomb, which tells us that the solution needs a `b` in the second position. After some trial and error, we figure out that the correct answer is:
 
