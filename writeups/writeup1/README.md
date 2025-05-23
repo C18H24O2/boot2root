@@ -354,7 +354,7 @@ This is a classic **binary bomb** challenge, often found in reverse engineering 
 
 ---
 
-Here the breakdown of the 6 stages:
+Here is the breakdown of the 6 stages:
 
 ### 3.2.1 – Stage 1: A Simple Comparison
 
@@ -383,7 +383,7 @@ Phase 1 defused. How about the next one?
 
 ### 3.2.2 – Stage 2: A Simple Algorithm
 
-See [phase2.disass.c](./scripts/phase2.disass.c) for the disassembled code.
+*See [phase2.disass.c](./scripts/phase2.disass.c) for the disassembled code.*
 
 Writing the algorithm back in [a script](./scripts/bomb-phase2.py) gives us the correct sequence :
 
@@ -394,7 +394,7 @@ That's number 2.  Keep going!
 
 ### 3.2.3 – Stage 3: A Correct sequence
 
-See [phase3.disass.c](./scripts/phase3.disass.c) for the disassembled code.
+*See [phase3.disass.c](./scripts/phase3.disass.c) for the disassembled code.*
 
 Multiple solutions are available, we need to read the hint file in the same directory as the bomb, which tells us that the solution needs a `b` in the second position. After some trial and error, we figure out that the correct answer is:
 
@@ -402,141 +402,25 @@ Multiple solutions are available, we need to read the hint file in the same dire
 
 ### 3.2.4 – Stage 4: Fibonacci
 
-Here the code :
-```c
-void phase_4(char *param_1)
+*See [phase4.disass.c](./scripts/phase4.disass.c) for the disassembled code.*
 
-{
-  int n_read;
-  int number;
-  
-  n_read = sscanf(param_1,"%d",&number);
-  if ((n_read != 1) || (number < 1)) {
-    explode_bomb();
-  }
-  n_read = fibonacci(number);
-  if (n_read != 0x37) {
-    explode_bomb();
-  }
-  return;
-}
-```
-```c
-int fibonacci(int number)
-
-{
-  int a;
-  int b;
-  
-  if (number < 2) {
-    b = 1;
-  }
-  else {
-    a = fibonacci(number + -1);
-    b = fibonacci(number + -2);
-    b = b + a;
-  }
-  return b;
-```
 We then need to find to find a positive solution of fibonacci(x) == 0x37 (55).
 
 The solution is `9`.
 
-### 3.2.4 – Stage 4: Cypher
+### 3.2.5 – Stage 5: Cypher
 
-```c
-void phase_5(char *str)
-
-{
-  int len;
-  char key [6];
-  
-  len = string_length(str);
-  if (len != 6) {
-    explode_bomb();
-  }
-  len = 0;
-  do {
-    key[len] = (&array.123)[(char)(str[len] & 0xf)];
-    len = len + 1;
-  } while (len < 6);
-  len = strings_not_equal(key,"giants");
-  if (len != 0) {
-    explode_bomb();
-  }
-  return;
-}
-```
+*See [phase5.disass.c](./scripts/phase5.disass.c) for the disassembled code.*
 
 This code takes our input, apply it on the index of a global variable, and check if we gets "giants"
 
-The global variable is :
-```isrveawhobpnutfg```
+The global variable is: `isrveawhobpnutfg`
 
 Using [a script](./scripts/bomb-phase5.py), we can get the correct input : `opekmq`
 
-### 3.2.5 – Stage 5: Tab sorting
+### 3.2.6 – Stage 6: Tab sorting
 
-```c
-void phase_6(char *str)
-
-{
-  int *piVar1;
-  int j;
-  int i;
-  undefined1 *global;
-  int *new_tab [6];
-  int int_tab [6];
-  int *ptr;
-  
-  global = node1;
-  read_six_numbers(str,int_tab);
-  i = 0;
-  do {
-    j = i;
-    if (5 < int_tab[i] - 1U) {
-      explode_bomb();
-    }
-    while (j = j + 1, j < 6) {
-      if (int_tab[i] == int_tab[j]) {
-        explode_bomb();
-      }
-    }
-    i = i + 1;
-  } while (i < 6);
-  i = 0;
-  do {
-    j = 1;
-    ptr = (int *)global;
-    if (1 < int_tab[i]) {
-      do {
-        ptr = (int *)ptr[2];
-        j = j + 1;
-      } while (j < int_tab[i]);
-    }
-    new_tab[i] = ptr;
-    i = i + 1;
-  } while (i < 6);
-  i = 1;
-  ptr = new_tab[0];
-  do {
-    piVar1 = new_tab[i];
-    ptr[2] = (int)piVar1;
-    i = i + 1;
-    ptr = piVar1;
-  } while (i < 6);
-  piVar1[2] = 0;
-  i = 0;
-  do {
-    if (*new_tab[0] < *(int *)new_tab[0][2]) {
-      explode_bomb();
-    }
-    new_tab[0] = (int *)new_tab[0][2];
-    i = i + 1;
-  } while (i < 5);
-  return;
-}
-```
+*See [phase6.disass.c](./scripts/phase6.disass.c) for the disassembled code.*
 
 This code :
 - Takes 6 numbers as an argument
@@ -545,52 +429,84 @@ This code :
 
 Using the hint file, we know that the sequence starts with `4`
 
-Understanding the algorithm gives us only one solution : `4 2 6 3 1 5`
+Understanding the algorithm gives us only one solution: `4 2 6 3 1 5`
 
-Putting all the answers together gives us the password for the `thor` user : `Publicspeakingisveryeasy.126241207201b2149opekmq426135`
+Putting all the answers together gives us the password for the `thor` user: `Publicspeakingisveryeasy.126241207201b2149opekmq426135` (**big ass asterisk**)
+
+*Asterisk: The keen eyed reader will notice that the last 6 digits have been switched up a little. This is because the subject makers are dumb and stupid and made a silly little itsy mistake.*
 
 ### 4.0.1 – Turtle
 
-On the thor user, we have 2 files :
+On the `thor` user, we have 2 files :
 ```bash
 thor@BornToSecHackMe:~$ ls
 README  turtle
+thor@BornToSecHackMe:~$ cat README
+Finish this challenge and use the result as password for 'zaz' user.
 ```
 
-The turtle is a file containing instruction as :
+The turtle is a file containing some instructions, and a little hint at the end:
 ```Tourne droite de 1 degrees
 Avance 50 spaces
 
 Avance 100 spaces
 Recule 200 spaces
+
+...
+
+Can you digest the message? :)
 ```
 
-Interpreting the code using [a script](./scripts/tt.py), we get the word `slash`
+Interpreting the first part with [a script](./scripts/tt.py), we get the jumbled up word `slash`.
 
-We need to use the `MD5` of the word `slash` and use it to connect as `zaz`
+As the hint suggests, we then try to use the `MD5` of the word `slash` and use it to connect as `zaz`: `646da671ca01bb5d84dbb5fb2238dc8e`
 
-The `MD5` is : `646da671ca01bb5d84dbb5fb2238dc8e`
+### 5.0.1 – Exploit me
 
 On the `zaz` session, we have a `exploit_me` binary, we are gonna... exploit it !!!!
 
-Here's the code :
+The code is pretty short:
 ```c
-int main(int argc,char **argv)
+int main(int argc, char **argv) {
+    char buffer[140];
 
-{
-  char str[140];
-  
-  if (1 < argc) {
-    strcpy(str,argv[1]);
-    puts(str);
-  }
-  return (argc < 2);
+    if (argc > 1) {
+        strcpy(buffer, argv[1]);
+        puts(buffer);
+    }
+    return (argc == 1);
 }
 ```
 
-We will put a shellcode inside of str, fill it of `A` till we overflow, and then override the `RET` instruction to `JMP` on our shellcode.
+This is a very simple setup for a buffer overflow. This attack will specifically target the return address of the `main` function, located on the stack, right next to our `buffer`.
+
+We will write a payload's instructions in the buffer (a "shellcode"), pad it until we overflow `buffer`, and then overwrite the return address so that the `ret` instruction of `main` jumps on our shellcode and executes it.
+
+*See the payload generation script [here](./scripts/payload.py).*
 ```bash
-$id
-uid=0(root) gid=0(root)
+zaz@BornToSecHackMe:~$ ./exploit_me $'...cool ass payload here...'
+...
+id
+uid=1005(zaz) gid=1005(zaz) euid=0(root) groups=0(root),1005(zaz)
 ```
-We are `root` !!!
+We are `root`!.. almost.
+
+A little bit of cleanup is required to claim our victory:
+```c
+#include <stdlib.h>
+
+int main(void) {
+    setuid(0);
+    setgid(0);
+    system("/bin/bash");
+}
+```
+
+```
+# cc -o /tmp/final /tmp/final.c
+# /tmp/final
+root@BornToSecHackMe:~# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+gg wp. 😎
