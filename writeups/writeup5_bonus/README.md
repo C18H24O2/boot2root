@@ -2,7 +2,7 @@
 
 > This writeup takes from [Writeup 1](../writeup1/README.md), having discovered `phpmyadmin` credentials.
 
-Another variation of PHP execution, this time creating a reverse shell instead of executing a commands.
+Another variation of PHP execution, this time creating a reverse shell instead of executing commands.
 
 First of all, I'm starting an http server on my host machine to serve the source file:
 ```bash

