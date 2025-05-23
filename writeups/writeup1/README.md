@@ -634,5 +634,26 @@ void phase_6(char *str)
 This code :
 - Takes 6 numbers as an argument
 - Explodes if any number is inferior to 1 or is a duplicate
-- Explodes if the sequence given does not follow 
-TODO !!!!!111
+- Explodes if the sequence given does not follow the algorithm logic
+
+Using the hint file, we know that the sequence starts with `4`
+
+Understanding the algorithm gives us only one solution : `4 2 6 3 1 5`
+
+Putting all the answers together gives us the password for the `thor` user : `Publicspeakingisveryeasy.126241207201b2149opekmq426135`
+
+### 4.0.1 – Turtle
+
+On the thor user, we have 2 files :
+```bash
+thor@BornToSecHackMe:~$ ls
+README  turtle
+```
+
+The turtle is a file containing instruction as :
+```Tourne droite de 1 degrees
+Avance 50 spaces
+
+Avance 100 spaces
+Recule 200 spaces
+```
