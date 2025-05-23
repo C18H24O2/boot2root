@@ -327,11 +327,12 @@ Concatenation complete. Output saved to output.c
 MY PASSWORD IS: Iheartpwnage
 Now SHA-256 it and submit
 ```
-Le SHA-256 de Iheartpwnage est : 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4
+
+Hashing the word gives us `330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4`.
 
 ## 3.2 – Laurie
 
-Once we retrieve the SHA-256 password (`330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4`), we can log in via SSH as the `laurie` user:
+Once we retrieve the SHA-256'd password, we can log in via SSH as the `laurie` user:
 
 ```bash
 [nix-shell:~/boot2root]$ ssh laurie@192.168.56.117
@@ -349,7 +350,7 @@ Welcome this is my little bomb !!!! You have 6 stages with
 only one life good luck !! Have a nice day!
 ```
 
-This is a classic **binary bomb** challenge, often found in reverse engineering exercises. The binary contains several stages that must be defused one by one by providing the correct input. If the input is incorrect, the program “explodes” (usually by exiting or displaying a failure message).
+This is a classic **binary bomb** challenge, often found in reverse engineering exercises. The binary contains several stages that must be defused one by one by providing the correct input. If the input is incorrect, the program "explodes" (usually by exiting or displaying a failure message).
 
 ---
 
@@ -488,10 +489,9 @@ void phase_3(char *param_1)
 }
 ```
 
-Multiple solutions are available, we need to read the hint file in the same directory as the bomb :
+Multiple solutions are available, we need to read the hint file in the same directory as the bomb, which tells us that the solution needs a `b` in the second position. After some trial and error, we figure out that the correct answer is:
 
-TODO
-`1 b 214`
+`1 b 214`.
 
 ### 3.2.4 – Stage 4: Fibonacci
 
