@@ -56,4 +56,4 @@ root@BornToSecHackMe:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-pwned. 😎
+pwned. 😎 (true hacker style)

@@ -30,4 +30,4 @@ $> gcc -pthread dirty.c -o dirty -lcrypt
 ```
 \*Note: we can't always use `wget` as depending on the network config the machine might not have an internet, if so, we can just paste from the host machine when we use ssh to connect to the machine
 
-we can then run the executable and wait... And after some time, the user firefart is created and we can connect as it, obtaining a root shell - **Congrats us, ~~that was pure talent!!!!~~**
+we can then run the executable and wait... And after some time, the user `firefart` is created and we can connect as it, obtaining a root shell - **Congrats us, ~~that was pure talent!!!!~~**
