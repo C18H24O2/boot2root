@@ -330,7 +330,7 @@ Now SHA-256 it and submit
 
 Hashing the word gives us `330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4`.
 
-## 3.2 – Laurie
+## 3.2.0 – Laurie & The Binary Bomb
 
 Once we retrieve the SHA-256'd password, we can log in via SSH as the `laurie` user:
 
@@ -339,8 +339,6 @@ Once we retrieve the SHA-256'd password, we can log in via SSH as the `laurie` u
 Password: 
 laurie@BornToSecHackMe:~$
 ```
-
-### Binary Bomb
 
 After logging in, we quickly notice a  file in Laurie's home `bomb`. Running it produces the following warning:
 
@@ -510,3 +508,8 @@ uid=0(root) gid=0(root) groups=0(root)
 ```
 
 gg wp. 😎
+```
+root@BornToSecHackMe:/# cat /root/README
+CONGRATULATIONS !!!!
+To be continued...
+```
