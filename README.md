@@ -3,10 +3,14 @@
 ## Exploits
 
 - Regular Path (Bomb)
-- DirtyC0w
-- Apache 2.2.22 suEXEC
 - Regular Path w/ ret2libc
-- ?
+- DirtyC0w
+- Reverse Shell
+- Apache 2.2.22 suEXEC
+- Extras
+  - Fakeroot
+  - ISO File exploitation
+  - Failed SquirrelMail exploit
 
 ## License
 
